@@ -30,6 +30,7 @@ sparql_exec.sparql_dsl <- function(x, ...) {
   switch(
     attr(x$query[[1]], "type"),
     ask = tmp$boolean,
-    select = tmp$results$bindings
+    select = tmp$results$bindings,
+    construct = tmp$results$bindings
   )
 }

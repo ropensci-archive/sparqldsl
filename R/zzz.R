@@ -3,7 +3,7 @@ cp <- function(x) Filter(Negate(is.null), x)
 spqurl <- function() "http://dbpedia.org/sparql"
 
 sparql_GET <- function(url, query, ...) {
-  res <- httr::GET(url, query = list(query = query), ...)
+  res <- httr::GET(url, query = list(query = query, output = "json"), ...)
   txt <- httr::content(res, "text", encoding = "UTF-8")
   jsonlite::fromJSON(txt)
 }

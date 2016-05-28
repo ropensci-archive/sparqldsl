@@ -29,8 +29,7 @@ WHERE
 sparql_dsl("http://dbpedia.org/sparql") \%>\%
  construct(s, p, o) \%>\%
  where(s, p, o) \%>\%
- limit(10) \%>\%
- inspect
+ limit(10)
 }
 }
 

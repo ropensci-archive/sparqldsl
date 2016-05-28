@@ -7,8 +7,7 @@
 #' sparql_dsl("http://dbpedia.org/sparql") %>%
 #'  construct(s, p, o) %>%
 #'  where(s, p, o) %>%
-#'  limit(10) %>%
-#'  inspect
+#'  limit(10)
 #' }
 construct <- function(.data, ...) {
   construct_(.data, .dots = lazyeval::lazy_dots(...))
@@ -19,7 +18,7 @@ construct <- function(.data, ...) {
 construct_ <- function(.data, ..., .dots) {
   pipe_autoexec(toggle = TRUE)
   tmp <- lazyeval::all_dots(.dots, ...)
-  z <- sprintf("CONSTRUCT { %s }", combine_args(tmp) %||% "* ")
+  z <- sprintf("CONSTRUCT { %s } ", combine_args(tmp) %||% "* ")
   dots <- comb(try_qry(.data), structure(z, type = "construct"))
   structure(list(url = .data$url, query = dots), class = "sparql_dsl")
 }
