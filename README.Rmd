@@ -23,3 +23,20 @@ devtools::install_github("ropenscilabs/sparqldsl")
 ```{r}
 library("sparqldsl")
 ```
+
+For examples we'll use DBpedia
+
+## ask
+
+```{r}
+sparql_dsl("http://dbpedia.org/sparql") %>% ask(s, p, o)
+```
+
+## select
+
+```{r}
+sparql_dsl("http://dbpedia.org/sparql") %>%
+  select() %>%
+  where(s, p, o) %>%
+  limit(10)
+```
