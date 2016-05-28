@@ -1,0 +1,32 @@
+dissem
+======
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+dissem.in client
+
+## Install
+
+Development version
+
+```{r eval=FALSE}
+devtools::install_github("ropenscilabs/dissem")
+```
+
+```{r}
+library("dissem")
+```
+
+## stuff
+
+```{r}
+"aadfadfa"
+```
+
