@@ -18,7 +18,7 @@ Execute sparql request
 }
 \examples{
 \dontrun{
-sparql_exec(spqurl())
+sparql_exec(spqurl(), "some query")
 
 out <- sparql_exec(spqurl(), query)
 head(out)

@@ -5,7 +5,7 @@
 #' @param query (character) A SPARQL query
 #' @param ... Further arguments passed on to \code{\link[httr]{GET}}
 #' @examples \dontrun{
-#' sparql_exec(spqurl())
+#' sparql_exec(spqurl(), "some query")
 #'
 #' out <- sparql_exec(spqurl(), query)
 #' head(out)
