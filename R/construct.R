@@ -10,13 +10,13 @@
 #'  limit(10) %>%
 #'  inspect
 #' }
-construct <- function(.data, ..., distinct = FALSE) {
+construct <- function(.data, ...) {
   construct_(.data, .dots = lazyeval::lazy_dots(...))
 }
 
 #' @export
-#' @rdname constuct
-construct_ <- function(.data, ..., .dots, distinct = FALSE) {
+#' @rdname construct
+construct_ <- function(.data, ..., .dots) {
   pipe_autoexec(toggle = TRUE)
   tmp <- lazyeval::all_dots(.dots, ...)
   z <- sprintf("CONSTRUCT { %s }", combine_args(tmp) %||% "* ")

@@ -4,14 +4,14 @@
 \alias{sparql_exec}
 \title{Execute sparql request}
 \usage{
-sparql_exec(x, ...)
+sparql_exec(x, query = NULL, ...)
 }
 \arguments{
-\item{...}{Further arguments passed on to \code{\link[httr]{GET}}}
-
-\item{url}{a SPARQL server url}
+\item{x}{a SPARQL server url, or an object of class \code{sparql_dsl}}
 
 \item{query}{(character) A SPARQL query}
+
+\item{...}{Further arguments passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Execute sparql request

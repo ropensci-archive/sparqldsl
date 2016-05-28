@@ -2,8 +2,6 @@
 #'
 #' @export
 #' @param .data (list) input, using higher level interface
-#' @param x input to print
-#' @param ... ignored
 #' @examples
 #' sparql_dsl("http://dbpedia.org/sparql") %>% ask(s, p, o) %>% inspect
 inspect <- function(.data) {

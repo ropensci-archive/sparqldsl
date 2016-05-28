@@ -16,6 +16,6 @@ ask_ <- function(.data, ..., .dots) {
   pipe_autoexec(toggle = TRUE)
   tmp <- lazyeval::all_dots(.dots, ...)
   z <- sprintf("ASK WHERE { %s }", combine_args(tmp))
-  dots <- comb(tryargs(.data), structure(z, type = "ask"))
+  dots <- comb(try_qry(.data), structure(z, type = "ask"))
   structure(list(url = .data$url, query = dots), class = "sparql_dsl")
 }

@@ -8,10 +8,6 @@ inspect(.data)
 }
 \arguments{
 \item{.data}{(list) input, using higher level interface}
-
-\item{x}{input to print}
-
-\item{...}{ignored}
 }
 \description{
 Peek at a SPARQL query

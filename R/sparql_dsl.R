@@ -2,8 +2,6 @@
 #'
 #' @export
 #' @param url A SPARQL url
-#' @param x for print
-#' @param ... ignored
 #' @examples \dontrun{
 #' sparql_dsl("http://dbpedia.org/sparql")
 #'

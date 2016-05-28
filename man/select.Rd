@@ -16,6 +16,9 @@ from function to function when using the sparqldsl DSL.}
 
 \item{...}{Comma separated list of unquoted variable names}
 
+\item{distinct}{(logical) whether to use distinct in select statement.
+Default: \code{FALSE}}
+
 \item{.dots}{Used to work around non-standard evaluation}
 
 \item{dots}{dots}

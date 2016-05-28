@@ -10,13 +10,13 @@
 #'  limit(10) %>%
 #'  inspect
 #' }
-where <- function(.data, ..., distinct = FALSE) {
+where <- function(.data, ...) {
   where_(.data, .dots = lazyeval::lazy_dots(...))
 }
 
 #' @export
 #' @rdname where
-where_ <- function(.data, ..., .dots, distinct = FALSE) {
+where_ <- function(.data, ..., .dots) {
   pipe_autoexec(toggle = TRUE)
   tmp <- lazyeval::all_dots(.dots, ...)
   z <- sprintf("WHERE { %s } ", combine_args(tmp) %||% " ")

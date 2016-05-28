@@ -8,10 +8,6 @@ sparql_dsl(url = NULL)
 }
 \arguments{
 \item{url}{A SPARQL url}
-
-\item{x}{for print}
-
-\item{...}{ignored}
 }
 \description{
 SPARQL dsl

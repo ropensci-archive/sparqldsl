@@ -2,6 +2,8 @@
 #'
 #' @export
 #' @template args
+#' @param distinct (logical) whether to use distinct in select statement.
+#' Default: \code{FALSE}
 #' @examples \dontrun{
 #' ### SELECT * WHERE { ?s ?p ?o } OFFSET 100 LIMIT 10
 #' ### query = sparql.select.where([:s, :p, :o]).offset(100).limit(10)

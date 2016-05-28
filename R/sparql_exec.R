@@ -1,7 +1,7 @@
 #' Execute sparql request
 #'
 #' @export
-#' @param url a SPARQL server url
+#' @param x a SPARQL server url, or an object of class \code{sparql_dsl}
 #' @param query (character) A SPARQL query
 #' @param ... Further arguments passed on to \code{\link[httr]{GET}}
 #' @examples \dontrun{
@@ -10,7 +10,7 @@
 #' out <- sparql_exec(spqurl(), query)
 #' head(out)
 #' }
-sparql_exec <- function(x, ...) {
+sparql_exec <- function(x, query = NULL, ...) {
   UseMethod("sparql_exec")
 }
 
@@ -21,7 +21,7 @@ sparql_exec.default <- function(x, query = NULL, ...) {
 
 #' @export
 sparql_exec.character <- function(x, query = NULL, ...) {
-  sparql_GET(x, query)
+  sparql_GET(x, query, ...)
 }
 
 #' @export

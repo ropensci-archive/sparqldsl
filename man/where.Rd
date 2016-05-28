@@ -5,9 +5,9 @@
 \alias{where_}
 \title{WHERE}
 \usage{
-where(.data, ..., distinct = FALSE)
+where(.data, ...)
 
-where_(.data, ..., .dots, distinct = FALSE)
+where_(.data, ..., .dots)
 }
 \arguments{
 \item{.data}{input. This can be JSON input, or an object of class

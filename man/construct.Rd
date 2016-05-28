@@ -2,9 +2,12 @@
 % Please edit documentation in R/construct.R
 \name{construct}
 \alias{construct}
+\alias{construct_}
 \title{CONSTRUCT}
 \usage{
-construct(.data, ..., distinct = FALSE)
+construct(.data, ...)
+
+construct_(.data, ..., .dots)
 }
 \arguments{
 \item{.data}{input. This can be JSON input, or an object of class
