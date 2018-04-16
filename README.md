@@ -82,3 +82,34 @@ sparql_dsl("http://dbpedia.org/sparql") %>%
 #> 9  http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat
 #> 10 http://www.openlinksw.com/schemas/virtrdf#QuadMapFormat
 ```
+
+## Open citations methods
+
+
+```r
+oc_doi2ids("10.1097/igc.0000000000000609")
+#>    type                           value
+#> 1 paper https://w3id.org/oc/corpus/br/1
+#> 2  pmid                        26645990
+#> 3 pmcid                      PMC4679344
+#> 4   doi    10.1097/igc.0000000000000609
+oc_pmid2ids("26645990")
+#>    type                           value
+#> 1 paper https://w3id.org/oc/corpus/br/1
+#> 2   doi    10.1097/igc.0000000000000609
+#> 3 pmcid                      PMC4679344
+#> 4  pmid                        26645990
+oc_pmcid2ids("PMC4679344")
+#>    type                           value
+#> 1 paper https://w3id.org/oc/corpus/br/1
+#> 2   doi    10.1097/igc.0000000000000609
+#> 3  pmid                        26645990
+#> 4 pmcid                      PMC4679344
+```
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropenscilabs/sparqldsl/issues)
+* License: MIT
+* Get citation information for `sparqldsl` in R doing `citation(package = 'sparqldsl')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
