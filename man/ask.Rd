@@ -29,4 +29,3 @@ ASK
 sparql_dsl("http://dbpedia.org/sparql") \%>\% ask(s, p, o)
 }
 }
-

@@ -37,4 +37,3 @@ sparql_dsl("http://dbpedia.org/sparql") \%>\%
  inspect
 }
 }
-

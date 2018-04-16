@@ -32,4 +32,3 @@ sparql_dsl("http://dbpedia.org/sparql") \%>\%
  limit(10)
 }
 }
-

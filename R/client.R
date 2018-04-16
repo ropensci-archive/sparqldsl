@@ -1,0 +1,108 @@
+#' Sparql Connection Client
+#' 
+#' Low level Sparql connection client with query methods
+#'
+#' @export
+#' @keywords internal
+#' @details
+#' \strong{Methods}
+#'   \describe{
+#'    \item{\code{make_url(x)}}{
+#'      construct the complete url
+#'    }
+#'    \item{\code{query(query, format = "json", ...)}}{
+#'      query the endpoint
+#'    }
+#'  }
+#' @format NULL
+#' @usage NULL
+#' @examples
+#' # dbpedia
+#' (x <- SparqlClient$new(url = "dbpedia.org", path = "sparql"))
+#' x$query("SELECT * WHERE { ?s ?p ?o } OFFSET 100 LIMIT 10")
+#' 
+#' # open citations
+#' (x <- SparqlClient$new(url = "opencitations.net", path = "sparql"))
+#' x$url
+#' x$path
+#' x$scheme
+#' x$make_base()
+#' x$make_url()
+#' 
+#' query <- I("PREFIX+cito%3A+<http%3A%2F%2Fpurl.org%2Fspar%2Fcito%2F>%0APREFIX+dcterms%3A+<http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F>%0APREFIX+datacite%3A+<http%3A%2F%2Fpurl.org%2Fspar%2Fdatacite%2F>%0APREFIX+literal%3A+<http%3A%2F%2Fwww.essepuntato.it%2F2010%2F06%2Fliteralreification%2F>%0APREFIX+biro%3A+<http%3A%2F%2Fpurl.org%2Fspar%2Fbiro%2F>%0APREFIX+frbr%3A+<http%3A%2F%2Fpurl.org%2Fvocab%2Ffrbr%2Fcore%23>%0APREFIX+c4o%3A+<http%3A%2F%2Fpurl.org%2Fspar%2Fc4o%2F>%0ASELECT+%3Fcited+%3Fcited_ref+%3Ftitle+%3Furl+WHERE+%7B%0A%09<https%3A%2F%2Fw3id.org%2Foc%2Fcorpus%2Fbr%2F1>+cito%3Acites+%3Fcited+.%0A%09OPTIONAL+%7B+%0A%09%09<https%3A%2F%2Fw3id.org%2Foc%2Fcorpus%2Fbr%2F1>+frbr%3Apart+%3Fref+.%0A%09%09%3Fref+biro%3Areferences+%3Fcited+%3B%0A%09%09%09c4o%3AhasContent+%3Fcited_ref+%0A%09%7D%0A%09OPTIONAL+%7B+%3Fcited+dcterms%3Atitle+%3Ftitle+%7D%0A%09OPTIONAL+%7B%0A%09%09%3Fcited+datacite%3AhasIdentifier+%5B%0A%09%09%09datacite%3AusesIdentifierScheme+datacite%3Aurl+%3B%0A%09%09%09literal%3AhasLiteralValue+%3Furl%0A%09%09%5D%0A%09%7D%0A%7D")
+#' x$query(query, verbose = TRUE)
+#' 
+#' # get PMID and PMCID identifiers from DOI
+#' qry <- 'PREFIX datacite: <http://purl.org/spar/datacite/>
+#' PREFIX literal: <http://www.essepuntato.it/2010/06/literalreification/>
+#' SELECT ?paper ?pmid ?pmcid WHERE {
+#'   ?paper datacite:hasIdentifier [ 
+#'       datacite:usesIdentifierScheme datacite:doi ;
+#'       literal:hasLiteralValue "10.1097/igc.0000000000000609"
+#'   ] .
+#'   
+#'   OPTIONAL {
+#'     ?paper datacite:hasIdentifier [ 
+#'       datacite:usesIdentifierScheme datacite:pmid ;
+#'       literal:hasLiteralValue ?pmid
+#'     ] .
+#'   }
+#'   
+#'   OPTIONAL {
+#'     ?paper datacite:hasIdentifier [ 
+#'       datacite:usesIdentifierScheme datacite:pmcid ;
+#'       literal:hasLiteralValue ?pmcid
+#'     ] .
+#'   }
+#' }'
+#' x$query(qry, verbose = TRUE)
+#' 
+#' # with DSL
+#' sparql_dsl("http://opencitations.net/sparql") %>%
+#'  prefix(datacite = "http://purl.org/spar/datacite/", 
+#'         literal = "http://www.essepuntato.it/2010/06/literalreification/") %>% 
+#'  select(paper, pmid, pmcid) %>% 
+#'  where(
+#'   list(paper, datacite:usesIdentifierScheme datacite:doi, literal:hasLiteralValue "10.1097/igc.0000000000000609"),
+#'   optional(
+#'     paper, datacite:usesIdentifierScheme datacite:pmid, literal:hasLiteralValue pmid
+#'   ),
+#'   optional(
+#'     paper, datacite:usesIdentifierScheme datacite:pmcid, literal:hasLiteralValue pmcid
+#'   )
+#'  )
+SparqlClient <- R6::R6Class(
+  'SparqlClient',
+  public = list(
+    url = NULL,
+    path = NULL,
+    scheme = NULL,
+
+    print = function(x, ...) {
+      cat("<sparql client> ", sep = "\n")
+      cat(paste0("  url: ", self$url), sep = "\n")
+      cat(paste0("  path: ", self$path), sep = "\n")
+      cat(paste0("  scheme: ", self$scheme), sep = "\n")
+      invisible(self)
+    },
+
+    initialize = function(url, path = "", scheme = "http") {
+      self$url <- url
+      self$path <- path
+      self$scheme <- scheme
+    },
+
+    make_base = function() {
+      file.path(paste0(self$scheme, ":/"), self$url)
+    },
+  
+    make_url = function() {
+      file.path(paste0(self$scheme, ":/"), self$url, self$path)
+    },
+
+    query = function(query, format = "json", flatten = TRUE, ...) {
+      sparql_GET(self$make_base(), self$path, query, format, 
+        flatten = flatten, ...)
+    }
+  )
+)

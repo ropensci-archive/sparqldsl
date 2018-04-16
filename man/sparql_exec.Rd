@@ -24,4 +24,3 @@ out <- sparql_exec(spqurl(), query)
 head(out)
 }
 }
-

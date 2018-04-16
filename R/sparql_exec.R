@@ -21,12 +21,12 @@ sparql_exec.default <- function(x, query = NULL, ...) {
 
 #' @export
 sparql_exec.character <- function(x, query = NULL, ...) {
-  sparql_GET(x, query, ...)
+  sparql_GET_old(x, query, ...)
 }
 
 #' @export
 sparql_exec.sparql_dsl <- function(x, ...) {
-  tmp <- sparql_GET(x$url, make_query(x$query), ...)
+  tmp <- sparql_GET_old(x$url, make_query(x$query), ...)
   switch(
     attr(x$query[[1]], "type"),
     ask = tmp$boolean,

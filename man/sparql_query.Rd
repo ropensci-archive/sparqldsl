@@ -23,4 +23,3 @@ sparql_dsl("http://dbpedia.org/sparql") \%>\%
  sparql_query("SELECT * WHERE { ?s ?p ?o } OFFSET 100 LIMIT 10")
 }
 }
-

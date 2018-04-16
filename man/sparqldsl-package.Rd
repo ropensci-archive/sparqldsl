@@ -2,8 +2,8 @@
 % Please edit documentation in R/sparqldsl-package.R
 \docType{package}
 \name{sparqldsl-package}
-\alias{sparqldsl}
 \alias{sparqldsl-package}
+\alias{sparqldsl}
 \title{SPARQL DSL Client}
 \description{
 SPARQL DSL Client
@@ -12,4 +12,3 @@ SPARQL DSL Client
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \keyword{package}
-

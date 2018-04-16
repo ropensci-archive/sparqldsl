@@ -2,10 +2,28 @@ cp <- function(x) Filter(Negate(is.null), x)
 
 spqurl <- function() "http://dbpedia.org/sparql"
 
-sparql_GET <- function(url, query, ...) {
+sparql_GET_old <- function(url, query, ...) {
   res <- httr::GET(url, query = list(query = query, output = "json"), ...)
   txt <- httr::content(res, "text", encoding = "UTF-8")
   jsonlite::fromJSON(txt)
+}
+
+sparql_GET <- function(url, path, query, format = "json", flatten = FALSE, ...) {
+  cli <- crul::HttpClient$new(
+    url = url, opts = list(...),
+    headers = switch(
+      format, 
+      json = list(Accept = "application/sparql-results+json")
+    )
+  )
+  qry <- list(query = query)
+  if (format == "json") qry$format <- "json"
+  res <- cli$get(path, query = qry)
+  res$raise_for_status()
+  jsonlite::fromJSON(res$parse("UTF-8"), flatten = flatten)
+  # res <- httr::GET(url, query = list(query = query, output = "json"), ...)
+  # txt <- httr::content(res, "text", encoding = "UTF-8")
+  # jsonlite::fromJSON(txt)
 }
 
 try_qry <- function(x) {
