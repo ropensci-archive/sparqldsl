@@ -13,6 +13,9 @@ inspect(.data)
 Peek at a SPARQL query
 }
 \examples{
-sparql_dsl("http://dbpedia.org/sparql") \%>\% ask(s, p, o) \%>\% inspect
+url <- "http://dbpedia.org/sparql"
+sparql_dsl(url) \%>\% ask(s, p, o) \%>\% inspect
+sparql_dsl(url) \%>\% select() \%>\% inspect
+sparql_dsl(url) \%>\% where() \%>\% inspect
+sparql_dsl(url) \%>\% prefix(dcterms = "http://purl.org/dc/terms/") \%>\% inspect
 }
-
