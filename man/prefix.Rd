@@ -10,7 +10,13 @@ prefix(.data, ...)
 prefix_(.data, ..., .dots)
 }
 \arguments{
+\item{.data}{input. This can be JSON input, or an object of class
+\code{sparql_dsl} that has JSON and query params combined, which is passed
+from function to function when using the sparqldsl DSL.}
+
 \item{...}{(logical) named prefixes}
+
+\item{.dots}{Used to work around non-standard evaluation}
 }
 \description{
 PREFIX

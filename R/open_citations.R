@@ -88,6 +88,7 @@ oc_2ids_template <- function(template_string, id_name) {
 #' PMID, or PMCID, depending on the function
 #' @return data.frame, with two columns, one for identifier type
 #' and the other for the identifier value
+#' @param ... curl options passed on to [crul::HttpClient]
 #' @examples
 #' oc_doi2ids("10.1097/igc.0000000000000609")
 #' oc_pmid2ids("26645990")

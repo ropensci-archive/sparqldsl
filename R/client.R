@@ -16,7 +16,7 @@
 #'  }
 #' @format NULL
 #' @usage NULL
-#' @examples
+#' @examples \dontrun{
 #' # dbpedia
 #' (x <- SparqlClient$new(url = "dbpedia.org", path = "sparql"))
 #' x$query("SELECT * WHERE { ?s ?p ?o } OFFSET 100 LIMIT 10")
@@ -71,6 +71,7 @@
 #'     paper, datacite:usesIdentifierScheme datacite:pmcid, literal:hasLiteralValue pmcid
 #'   )
 #'  )
+#' }
 SparqlClient <- R6::R6Class(
   'SparqlClient',
   public = list(

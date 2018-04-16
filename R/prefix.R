@@ -1,6 +1,10 @@
 #' PREFIX
 #'
 #' @export
+#' @param .data input. This can be JSON input, or an object of class
+#' \code{sparql_dsl} that has JSON and query params combined, which is passed
+#' from function to function when using the sparqldsl DSL.
+#' @param .dots Used to work around non-standard evaluation
 #' @param ... (logical) named prefixes
 #' @examples \dontrun{
 #' ### PREFIX cito: <http://purl.org/spar/cito/>

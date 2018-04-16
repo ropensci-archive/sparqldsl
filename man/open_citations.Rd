@@ -13,8 +13,10 @@ oc_pmid2ids(id, ...)
 oc_pmcid2ids(id, ...)
 }
 \arguments{
-\item{id}{Either a digital object identifier (DOI), 
+\item{id}{Either a digital object identifier (DOI),
 PMID, or PMCID, depending on the function}
+
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \value{
 data.frame, with two columns, one for identifier type

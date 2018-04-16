@@ -9,16 +9,17 @@ Low level Sparql connection client with query methods
 }
 \details{
 \strong{Methods}
-  \describe{
-   \item{\code{make_url(x)}}{
-     construct the complete url
-   }
-   \item{\code{query(query, format = "json", ...)}}{
-     query the endpoint
-   }
- }
+\describe{
+\item{\code{make_url(x)}}{
+construct the complete url
+}
+\item{\code{query(query, format = "json", ...)}}{
+query the endpoint
+}
+}
 }
 \examples{
+\dontrun{
 # dbpedia
 (x <- SparqlClient$new(url = "dbpedia.org", path = "sparql"))
 x$query("SELECT * WHERE { ?s ?p ?o } OFFSET 100 LIMIT 10")
@@ -73,5 +74,6 @@ sparql_dsl("http://opencitations.net/sparql") \%>\%
     paper, datacite:usesIdentifierScheme datacite:pmcid, literal:hasLiteralValue pmcid
   )
  )
+}
 }
 \keyword{internal}
