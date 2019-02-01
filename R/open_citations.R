@@ -71,7 +71,8 @@ oc_2ids_template <- function(template_string, id_name) {
   function(id, ...) {
    qry <- sprintf(template_string, id)
     conn <- SparqlClient$new(url = "opencitations.net", path = "sparql")
-    tmp <- conn$query(qry)$results$bindings
+    tmp <- conn$query(qry, ...)$results$bindings
+    if (length(tmp) == 0) return(data.frame(NULL))
     tmp <- data.frame(
       type = gsub("\\.type", "", names(tmp[, grep("\\.type", names(tmp))])),
       value = unlist(unname(c(tmp[, grep("\\.value", names(tmp))]))),
