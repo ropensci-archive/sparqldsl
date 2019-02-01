@@ -21,9 +21,6 @@ sparql_GET <- function(url, path, query, format = "json", flatten = FALSE, ...) 
   res <- cli$get(path, query = qry)
   res$raise_for_status()
   jsonlite::fromJSON(res$parse("UTF-8"), flatten = flatten)
-  # res <- httr::GET(url, query = list(query = query, output = "json"), ...)
-  # txt <- httr::content(res, "text", encoding = "UTF-8")
-  # jsonlite::fromJSON(txt)
 }
 
 try_qry <- function(x) {
@@ -38,15 +35,6 @@ try_qry <- function(x) {
 comb <- function(x, y) {
   cp(do.call("c", list(x, list(y))))
 }
-
-# tryargs <- function(x) {
-#   res <- tryCatch(x$args, error = function(e) e)
-#   if (inherits(res, "simpleError")) {
-#     list()
-#   } else {
-#     x$args
-#   }
-# }
 
 combine_args <- function(x) {
   if (length(x) > 0) {
